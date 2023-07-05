@@ -38,8 +38,10 @@ app.delete("/list/del/:id", async(req, res) => {
 
 const start = async () => {
     try {
-        app.listen(3000, () => {
+        app.listen(3000, async() => {
             console.log("server running");
+            const myData = await List.find();
+            res.status(200).json(myData); 
         });
         await connectDB();
     } catch (error) {
