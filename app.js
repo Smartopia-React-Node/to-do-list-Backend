@@ -10,7 +10,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/", async(req, res) => {
+app.get("/api/list", async(req, res) => {
     try {
         const myData = await List.find();
         res.status(200).json(myData);   
@@ -18,16 +18,17 @@ app.get("/", async(req, res) => {
         console.log(error);
     }
 });
-app.post("/list", async(req, res) => {
+app.post("/api/list", async(req, res) => {
     try {
         const newData = (req.query);
+        console.log(req.query);
         List.create(newData);
         res.status(200).send("data stored");
     } catch (error) {
         console.log(error);
     }
 });
-app.delete("/list/del/:id", async(req, res) => {
+app.delete("/api/list/del/:id", async(req, res) => {
     try {
         const item = await List.findByIdAndDelete(req.params.id);
         res.status(200).send("data deleted");
