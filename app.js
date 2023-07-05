@@ -24,7 +24,7 @@ app.get("/api/list", async (req, res) => {
   }
 });
 app.post("/api/list", async (req, res) => {
-  const newData = new List(req.query);
+  const newData = new List(req.body);
   try {
     const data = await newData.save(); //returns object|json
     console.log(data);
