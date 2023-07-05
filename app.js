@@ -10,7 +10,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/list", async(req, res) => {
+app.get("/", async(req, res) => {
     try {
         const myData = await List.find();
         res.status(200).json(myData);   
@@ -40,8 +40,6 @@ const start = async () => {
     try {
         app.listen(3000, async() => {
             console.log("server running");
-            const myData = await List.find();
-            res.status(200).json(myData); 
         });
         await connectDB();
     } catch (error) {
